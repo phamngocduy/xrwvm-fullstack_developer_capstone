@@ -1,12 +1,13 @@
 #!/bin/bash
 
-pip install virtualenv
+pip3 install virtualenv
 virtualenv djangoenv
 source djangoenv/bin/activate
 
-pip install -U -r requirements.txt
+pip3 install -U -r requirements.txt
 
-python manage.py makemigrations
-python manage.py migrate
+python3 manage.py makemigrations
+python3 manage.py migrate
 
-python manage.py runserver
+python3 manage.py runserver
+alias py=python3
