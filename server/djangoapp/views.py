@@ -73,7 +73,7 @@ def registration(request):
         login(request, user)
         return JsonResponse({'userName': username, 'status': 'Authenticated'})
     else:
-        return JsonResponse({'userName': username, 'error': 'Already Registerd'})
+        return JsonResponse({'userName': username, 'error': 'Already Registered'})
 
 # # Update the `get_dealerships` view to render the index page with
 # a list of dealerships

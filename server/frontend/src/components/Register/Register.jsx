@@ -48,7 +48,7 @@ const Register = () => {
         <div className="header" style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
             <span className="text" style={{flexGrow:'1'}}>SignUp</span>
             <div style={{display:'flex',flexDirection:'row',justifyContent:'end',alignSelf:'start'}}>
-                <a href="/" onClick={goHome()} style={{justifyContent:'space-between',alignItems:'flex-end'}}>
+                <a href="/" onClick={() => goHome()} style={{justifyContent:'space-between',alignItems:'flex-end'}}>
                     <img style={{width:'1cm'}} src={close_icon} alt="X"/>
                 </a>
             </div>
