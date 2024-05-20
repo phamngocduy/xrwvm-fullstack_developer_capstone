@@ -12,6 +12,7 @@ from .populate import initiate
 from .models import CarMake, CarModel
 from .restapis import get_request, analyze_review_sentiments, post_review
 
+
 def get_cars(request):
     count = CarMake.objects.filter().count()
     print(count)
@@ -19,8 +20,9 @@ def get_cars(request):
         initiate()
     car_models = CarModel.objects.select_related('car_make')
     cars = [{'CarModel': car_model.name, 'CarMake': car_model.car_make.name}
-        for car_model in car_models]
+            for car_model in car_models]
     return JsonResponse({'CarModels': cars})
+
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -72,18 +74,19 @@ def registration(request):
         # if not, simply log this is a new user
         print(error)
         logger.debug(f'{username} is new user')
-    
+
     # if it is a new user
     if not username_exist:
         # creates user in auth_user table
-        user = User.objects.create_user(username=username,
-            first_name=first_name, last_name=last_name,
+        user = User.objects.create_user(
+            username=username, first_name=first_name, last_name=last_name,
             password=password, email=email)
         # logins the user and redirect to list page
         login(request, user)
         return JsonResponse({'userName': username, 'status': 'Authenticated'})
     else:
-        return JsonResponse({'userName': username, 'error': 'Already Registered'})
+        return JsonResponse({'userName': username,
+                             'error': 'Already Registered'})
 
 
 # # Update the `get_dealerships` view to render the index page with
@@ -124,7 +127,7 @@ def get_dealer_details(request, dealer_id):
 
 # Create a `add_review` view to submit a review
 def add_review(request):
-    if request.user.is_anonymous == False:
+    if request.user.is_anonymous is False:
         data = json.loads(request.body)
         try:
             response = post_review(data)
@@ -133,6 +136,6 @@ def add_review(request):
         except Exception as error:
             print(error)
             return JsonResponse({'status': 401,
-                'message': 'Error in posting review'})
+                                 'message': 'Error in posting review'})
     else:
         return JsonResponse({'status': 403, 'message': 'Unauthorised'})

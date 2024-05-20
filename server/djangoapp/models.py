@@ -37,7 +37,8 @@ class CarModel(models.Model):
         ('WAGON', 'Wagon')
     ]
     type = models.CharField(max_length=10, choices=CAR_TYPES, default='SUV')
-    year = models.IntegerField(default=2024,
+    year = models.IntegerField(
+        default=2024,
         validators=[MinValueValidator(2015), MaxValueValidator(2024)])
 
     def __str__(self):
